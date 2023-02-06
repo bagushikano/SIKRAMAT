@@ -29,7 +29,9 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        Passport::routes();
+        if (! $this->app->routesAreCached()) {
+            Passport::routes();
+        }
         //
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
             return (new MailMessage)
