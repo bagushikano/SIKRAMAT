@@ -1,0 +1,83 @@
+<table>
+    <thead>
+        <tr>
+            @if (count($data['request']->banjar_adat_mipil) > 0)
+                <th colspan="16" height="50" style="border: 0.1 solid black">
+            @else
+                <th colspan="15" height="50" style="border: 0.1 solid black">
+            @endif
+                LAPORAN DATA KRAMA MIPIL
+                <br>
+                DESA ADAT {{ strtoupper(session()->get('desa_adat_nama')) }}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @if (count($data['request']->banjar_adat_mipil) > 0)
+                <td colspan="16" style="border: 0.1 solid black">
+            @else
+                <td colspan="15" style="border: 0.1 solid black">
+            @endif
+        </tr>
+        <tr>
+            <th style="text-align:center; border: 0.1px solid black;">NO</th>
+            <th style="text-align:center; border: 0.1px solid black;">NOMOR<br>KRAMA MIPIL</th>
+            <th style="text-align:center; border: 0.1px solid black;">NIK</th>
+            <th style="text-align:center; border: 0.1px solid black;">NAMA<br>LENGKAP</th>
+            <th style="text-align:center; border: 0.1px solid black;">NAMA ALIAS<br>(BHISEKA)</th>
+            <th style="text-align:center; border: 0.1px solid black;">TEMPAT<br>LAHIR</th>
+            <th style="text-align:center; border: 0.1px solid black;">TANGGAL<br>LAHIR</th>
+            <th style="text-align:center; border: 0.1px solid black;">JENIS<br>KELAMIN</th>
+            <th style="text-align:center; border: 0.1px solid black;">BANJAR ADAT</th>
+            <th style="text-align:center; border: 0.1px solid black;">PENDIDIKAN<br>TERTINGGI</th>
+            <th style="text-align:center; border: 0.1px solid black;">PEKERJAAN</th>
+            <th style="text-align:center; border: 0.1px solid black;">GOLONGAN<br>DARAH</th>
+            <th style="text-align:center; border: 0.1px solid black;">ALAMAT</th>
+            <th style="text-align:center; border: 0.1px solid black;">KEDUDUKAN</th>
+            <th style="text-align:center; border: 0.1px solid black;">JENIS</th>
+            <th style="text-align:center; border: 0.1px solid black;">TANGGAL<br>REGISTRASI</th>
+        </tr>
+        @foreach ($data['krama_mipil'] as $krama_mipil)
+            <tr>
+                <td style="text-align: center; border: 0.1px solid black;">{{ $loop->iteration }}</td>
+                <td style="border: 0.1px solid black;">{{ $krama_mipil->nomor_krama_mipil }}</td>
+                <td style="border: 0.1px solid black;">{{ $krama_mipil->nik }}</td>
+                @if ($krama_mipil->gelar_depan == NULL && $krama_mipil->gelar_depan == NULL)
+                    @php
+                        $nama_lengkap = $krama_mipil->nama;
+                    @endphp
+                @else
+                    @if ($krama_mipil->gelar_depan != NULL && $krama_mipil->gelar_belakang == NULL)
+                        @php
+                            $nama_lengkap = $krama_mipil->gelar_depan.' '.$krama_mipil->nama;
+                        @endphp
+                    @endif
+                    @if ($krama_mipil->gelar_depan == NULL && $krama_mipil->gelar_belakang != NULL)
+                        @php
+                            $nama_lengkap = $krama_mipil->nama.', '.$krama_mipil->gelar_belakang;
+                        @endphp
+                    @endif
+                    @if ($krama_mipil->gelar_depan != NULL && $krama_mipil->gelar_belakang != NULL)
+                        @php
+                            $nama_lengkap = $krama_mipil->gelar_depan.' '.$krama_mipil->nama.', '.$krama_mipil->gelar_belakang;
+                        @endphp
+                    @endif
+                @endif
+                <td style="border: 0.1px solid black;">{{ $nama_lengkap }}</td>
+                <td style="border: 0.1px solid black;">{{ $krama_mipil->nama_alias ?? '-' }}</td>
+                <td style="border: 0.1px solid black;">{{ $krama_mipil->tempat_lahir }}</td>
+                <td style="border: 0.1px solid black;">{{ \Carbon\Carbon::parse($krama_mipil->tanggal_lahir)->locale('id')->translatedFormat('d F Y') }}</td>
+                <td style="border: 0.1px solid black;">{{ ucfirst($krama_mipil->jenis_kelamin) }}</td>
+                <td style="border: 0.1px solid black;">{{ $krama_mipil->nama_banjar_adat ?? '-' }}</td>
+                <td style="border: 0.1px solid black;">{{ $krama_mipil->jenjang_pendidikan }}</td>
+                <td style="border: 0.1px solid black;">{{ $krama_mipil->profesi }}</td>
+                <td style="text-align: center; border: 0.1px solid black;">{{ $krama_mipil->golongan_darah }}</td>
+                <td style="border: 0.1px solid black;">{{ $krama_mipil->alamat ?? '-' }}</td>
+                <td style="text-align: center; border: 0.1px solid black;">{{ ucfirst($krama_mipil->kedudukan_krama_mipil) }}</td>
+                <td style="text-align: center; border: 0.1px solid black;">{{ ucwords(str_replace("_", " ", $krama_mipil->jenis_krama_mipil)) }}</td>
+                <td style="border: 0.1px solid black;">{{ \Carbon\Carbon::parse($krama_mipil->tanggal_registrasi)->locale('id')->translatedFormat('d F Y') }}</td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
