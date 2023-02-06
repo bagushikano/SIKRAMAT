@@ -29,6 +29,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if($this->app->environment('production')) {
+            \URL::forceScheme('https');
+        }
+
         Blade::if('permission', function ($expression) {
             $user = auth()->guard()->user();
 
