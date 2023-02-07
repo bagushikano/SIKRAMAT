@@ -1,7 +1,7 @@
 # Sistem Informasi Manajemen Kependudukan Desa Adat Terintegrasi (SIM Krama Adat Bali)
 
-**SIKRAMAT** (Sistem Informasi Manajemen Kependudukan Desa Adat Terintegrasi) sebuah sistem informasi yang memungkinkan manajemen data Krama Adat Bali (data penduduk adat Bali) dengan mudah. Project dibangung menggunakan PHP 8 dengan Framework Laravel dan MySQL sebagai database.
-## Disclaimers
+**SIKRAMAT** (Sistem Informasi Manajemen Kependudukan Desa Adat Terintegrasi) adalah sebuah sistem informasi yang memungkinkan manajemen data Krama Adat Bali (data penduduk adat Bali) dengan mudah. Project dibangung menggunakan PHP 8 dengan Framework Laravel dan MySQL sebagai database.
+## Disclaimer
 Project ini dibangung dengan kolaborasi berasama [@abdipurnawan](https://github.com/abdipurnawan) dengan tujuan untuk memenuhi tugas akhir.
 ## Fitur
 ✅ Manajemen data Krama (Keluarga) dan penduduk dengan mengikuti kaidah Krama Mipil, Krama Tamiu, dan Tamiu
