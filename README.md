@@ -5,7 +5,9 @@
 Project ini dibangung dengan kolaborasi berasama [@abdipurnawan](https://github.com/abdipurnawan) dengan tujuan untuk memenuhi tugas akhir.
 ## Fitur
 ✅ Manajemen data Krama (Keluarga) dan penduduk dengan mengikuti kaidah Krama Mipil, Krama Tamiu, dan Tamiu
+
 ✅ Manajemen data mutasi penduduk seperti kelahiran, kematian, perkawinan dengan sistem Purusa dan Pradana, perceraian, dan maperas (pengangkatan anak)
+
 ✅ Report dan rekap data Penduduk
 
 ## Screenshot
